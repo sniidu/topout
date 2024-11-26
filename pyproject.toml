@@ -1,0 +1,9 @@
+[project]
+name = "topout"
+version = "0.1.0"
+description = "From boulderer to boulderers"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb>=1.1.3",
+]

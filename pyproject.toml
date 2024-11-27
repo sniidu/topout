@@ -5,5 +5,8 @@ description = "From boulderer to boulderers"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "click>=8.1.7",
     "duckdb>=1.1.3",
+    "httpx>=0.27.2",
+    "pydantic>=2.10.2",
 ]

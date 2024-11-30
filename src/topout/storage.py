@@ -30,12 +30,18 @@ class Duck:
         """
         if replace:
             self.con.execute(
-                "create or replace table problem (id bigint primary key, struct json)"
+                """create or replace table problem 
+                (id bigint primary key, 
+                struct json, 
+                modified_at timestamp)"""
             )
             logger.info("Replaced problem-table")
         else:
             self.con.execute(
-                "create table if not exists problem (id bigint primary key, struct json)"
+                """create table if not exists problem 
+                (id bigint primary key, 
+                struct json,
+                modified_at timestamp)"""
             )
             logger.info("Created problem-table if not existed")
 
@@ -53,5 +59,9 @@ class Duck:
         except ValidationError as e:
             logger.warning(f"Won't store problem {key} due to validation error:\n{e}")
             return
-        self.con.execute("insert or replace into problem values (?, ?)", [key, val])
+        self.con.execute(
+            """insert or replace into problem 
+            values (?, ?, current_timestamp)""",
+            [key, val],
+        )
         logger.debug(f"Inserted {key} to db")
